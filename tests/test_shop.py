@@ -11,9 +11,11 @@ from models.models import Cart
 def product():
     return Product("book", 100, "This is a book", 1000)
 
+
 @pytest.fixture
 def cart():
     return Cart()
+
 
 class TestProducts:
     """
@@ -26,14 +28,12 @@ class TestProducts:
         assert product.check_quantity(0)
         assert product.check_quantity(999)
         assert product.check_quantity(1000)
-        assert product.check_quantity(1001) == False
-
+        assert product.check_quantity(1001) is False
 
     def test_product_buy(self, product):
         # TODO напишите проверки на метод buy
         assert product.buy(0) == product.quantity
         assert product.buy(999) == product.quantity
-
 
     def test_product_buy_more_than_available(self, product):
         # TODO напишите проверки на метод buy,
@@ -43,7 +43,6 @@ class TestProducts:
             product.buy(1001)
 
 
-
 class TestCart:
     """
     TODO Напишите тесты на методы класса Cart
@@ -51,6 +50,7 @@ class TestCart:
         На некоторые методы у вас может быть несколько тестов.
         Например, негативные тесты, ожидающие ошибку (используйте pytest.raises, чтобы проверить это)
     """
+
     def test_cart_add_product(self, product, cart):
         # TODO проверка на добавление товара в корзину
         cart.add_product(product, 0)
@@ -76,7 +76,7 @@ class TestCart:
         cart.remove_product(product)
         assert product not in cart.products
 
-        cart.add_product(product,0)
+        cart.add_product(product, 0)
         cart.remove_product(product, 0)
         assert product not in cart.products
 
@@ -125,4 +125,3 @@ class TestCart:
         cart.add_product(product, 1001)
         with pytest.raises(ValueError):
             cart.buy()
-

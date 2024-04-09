@@ -14,7 +14,6 @@ class Product:
         self.description = description
         self.quantity = quantity
 
-
     def check_quantity(self, quantity) -> bool:
         """
         TODO Верните True если количество продукта больше или равно запрашиваемому
@@ -29,9 +28,9 @@ class Product:
             Если продуктов не хватает, то выбросите исключение ValueError
         """
         if self.check_quantity(quantity):
-             self.quantity -= quantity
+            self.quantity -= quantity
         else:
-           raise ValueError('Not enough quantity in stock')
+            raise ValueError('Not enough quantity in stock')
 
         return self.quantity
 
