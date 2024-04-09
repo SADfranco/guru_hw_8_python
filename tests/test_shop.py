@@ -3,8 +3,8 @@
 """
 import pytest
 
-from models import Product
-from models import Cart
+from models.models import Product
+from models.models import Cart
 
 
 @pytest.fixture
@@ -53,15 +53,14 @@ class TestCart:
     """
     def test_cart_add_product(self, product, cart):
         # TODO проверка на добавление товара в корзину
+        cart.add_product(product, 0)
+        assert cart.products[product] == 0
+
         cart.add_product(product)
         assert cart.products[product] == 1
 
         cart.add_product(product, 10)
         assert cart.products[product] == 11
-
-        cart.add_product(product, 0)
-        assert cart.products[product] == 0
-
 
     def test_cart_remove_product_from(self, cart, product):
         # TODO проверка на удаление товаров из корзины
